@@ -7,7 +7,7 @@
 use Sergigp\Funiculus as f;
 ```
 
-#map
+###map
 
 Returns a lazy sequence with functions applied.
 
