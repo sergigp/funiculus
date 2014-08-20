@@ -10,5 +10,10 @@
     ],
     "require-dev": {
         "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "files": [
+            "src/Sergigp/Funiculus/funiculus.php"
+        ]
     }
 }
