@@ -16,9 +16,10 @@ namespace Sergigp\Funiculus
 
     function map ($fun, $seq)
     {
-        if (!is_callable($fun) && predefinedClosures($fun)) {
-            return array_map(predefinedClosures($fun), $seq);
+        $fun = is_callable($fun) ? $fun : predefinedClosures($fun);
+
+        foreach ($seq as $el) {
+            yield $fun($el);
         }
-        return array_map($fun, $seq);
     }
 }
