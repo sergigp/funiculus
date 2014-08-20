@@ -1,6 +1,6 @@
 {
     "name": "sergigp/funiculus",
-    "description": "",
+    "description": "some clojure ideas implemented in PHP",
     "license": "MIT",
     "authors": [
         {
