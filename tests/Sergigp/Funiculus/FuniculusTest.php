@@ -1,7 +1,5 @@
 <?php
 
-include_once __DIR__ . '/../vendor/autoload.php';
-
 use Sergigp\Funiculus as f;
 
 class FuniculusTest extends PHPUnit_Framework_TestCase
