@@ -18,7 +18,16 @@ You can use some syntactic sugar functions like `f\op('inc')`, `f\op('dec')`, `f
 ```
 $test = [1, 2, 3, 4]
 
-f\map(f\op('inc'), $test); // [2, 3, 4, 5] 
-f\map(function($a) { return ++$a; }, $test); // [2, 3, 4, 5]
-f\map('abs', [-1, -2, -3, -4])); // [1, 2, 3, 4]
+f\map(f\op('inc'), $test);
+// [2, 3, 4, 5]
+
+f\map(f\op('inc', 3), $test);
+// [4, 5, 6, 7] 
+
+f\map(function($a) { return ++$a; }, $test);
+// [2, 3, 4, 5]
+
+f\map('abs', [-1, -2, -3, -4]));
+// [1, 2, 3, 4]
+
 ```
