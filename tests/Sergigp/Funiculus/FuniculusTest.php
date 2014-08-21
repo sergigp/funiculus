@@ -38,6 +38,13 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
         $this->compareArrayWithLazySeq([1, 8, 27, 64], f\map(f\op('pow', 3), $test1));
 
     }
+    
+    /** @test **/
+    public function it_should_throw_an_exception_with_invalid_operator()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        f\op('non_existent_operator');
+    }
 
     private function compareArrayWithLazySeq(array $array, $lazySeq)
     {
