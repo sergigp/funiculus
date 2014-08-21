@@ -11,10 +11,12 @@ use Sergigp\Funiculus as f;
 
 Returns a lazy sequence with functions applied.
 
-You can use some syntactic sugar functions like `inc`, `dec`, `square`; a closure or a native php function:
+You can use some syntactic sugar functions like `f\op('inc')`, `f\op('dec')`, `f\op('square'), f\op('pow', 3)`; a closure or a native php function:
 
 ```
-f\map('inc', [1, 2, 3, 4]);
-f\map(function($a) { return ++$a; }, [1, 2, 3, 4]);
-f\map('abs', [-1, -2, -3, -4]));
+$test = [1, 2, 3, 4]
+
+f\map(f\op('inc'), $test); // [2, 3, 4, 5] 
+f\map(function($a) { return ++$a; }, $test); // [2, 3, 4, 5]
+f\map('abs', [-1, -2, -3, -4])); // [1, 2, 3, 4]
 ```
