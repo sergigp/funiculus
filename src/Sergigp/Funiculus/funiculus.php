@@ -3,21 +3,32 @@
 
 namespace Sergigp\Funiculus
 {
-    function predefinedClosures($n)
+    function op ($op, $arg = null)
     {
         $funs = [
-            'inc'       => function($i) { return ++$i; },
-            'dec'       => function($i) { return --$i; },
-            'square'    => function($i) { return $i * $i; },
+            'inc'       => function($x, $arg = 1) { return $x + $arg; },
+            'dec'       => function($x, $arg = 1) { return $x - $arg; },
+            'square'    => function($x) { return $x * $x; },
+            'pow'       => function($x, $arg) { return pow($x, $arg); },
         ];
 
-        return array_key_exists($n, $funs) ? $funs[$n] : false;
+        if (!array_key_exists($op, $funs)) {
+            throw new \InvalidArgumentException(sprintf('Unknown operator: %s', $op));
+        }
+
+        $fn = $funs[$op];
+
+        if (is_null($arg)) {
+            return $funs[$op];
+        }
+
+        return function ($a) use ($fn, $arg) {
+            return $fn ($a, $arg);
+        };
     }
 
-    function map ($fun, $seq)
+    function map (callable $fun, $seq)
     {
-        $fun = is_callable($fun) ? $fun : predefinedClosures($fun);
-
         foreach ($seq as $el) {
             yield $fun($el);
         }
