@@ -11,4 +11,4 @@ use Sergigp\Funiculus as f;
 
 ##Functions
 
-You can see [available functions](https://github.com/sergigp/funiculus/functions.md)
+You can see [available functions](https://github.com/sergigp/funiculus/blob/master/functions.md)
