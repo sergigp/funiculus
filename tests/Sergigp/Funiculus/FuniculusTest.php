@@ -4,14 +4,17 @@ use Sergigp\Funiculus as f;
 
 class FuniculusTest extends PHPUnit_Framework_TestCase
 {
+    private $integerSequence = [1, 2, 3, 4, 5];
+
     /** @test **/
     public function it_map_closure_functions_to_array()
     {
-        $test = [1, 2, 3, 4];
-
         $mapFunction = function($i){ return ++$i; };
 
-        $this->compareArrayWithLazySeq([2, 3, 4, 5], f\map($mapFunction, $test));
+        $this->compareArrayWithLazySeq(
+            [2, 3, 4, 5, 6],
+            f\map($mapFunction, $this->integerSequence)
+        );
     }
 
     /** @test **/
@@ -27,15 +30,13 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function it_should_map_closure_refference_to_array ()
     {
-        $test1 = [1, 2, 3, 4];
+        $this->compareArrayWithLazySeq([2, 3, 4, 5, 6], f\map(f\op('inc'), $this->integerSequence));
+        $this->compareArrayWithLazySeq([0, 1, 2, 3, 4], f\map(f\op('dec'), $this->integerSequence));
+        $this->compareArrayWithLazySeq([1, 4, 9, 16, 25], f\map(f\op('square'), $this->integerSequence));
 
-        $this->compareArrayWithLazySeq([2, 3, 4, 5], f\map(f\op('inc'), $test1));
-        $this->compareArrayWithLazySeq([0, 1, 2, 3], f\map(f\op('dec'), $test1));
-        $this->compareArrayWithLazySeq([1, 4, 9, 16], f\map(f\op('square'), $test1));
-
-        $this->compareArrayWithLazySeq([3, 4, 5, 6], f\map(f\op('inc', 2), $test1));
-        $this->compareArrayWithLazySeq([-2, -1, 0, 1], f\map(f\op('dec', 3), $test1));
-        $this->compareArrayWithLazySeq([1, 8, 27, 64], f\map(f\op('pow', 3), $test1));
+        $this->compareArrayWithLazySeq([3, 4, 5, 6, 7], f\map(f\op('inc', 2), $this->integerSequence));
+        $this->compareArrayWithLazySeq([-2, -1, 0, 1, 2], f\map(f\op('dec', 3), $this->integerSequence));
+        $this->compareArrayWithLazySeq([1, 8, 27, 64, 125], f\map(f\op('pow', 3), $this->integerSequence));
 
     }
     
@@ -49,14 +50,14 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function it_should_return_first()
     {
-        $this->assertEquals(1, f\first([1, 2, 3]));
+        $this->assertEquals(1, f\first($this->integerSequence));
         $this->assertEquals('foo', f\first(['a' => 'foo', 'b' => 'bar']));
     }
     
     /** @test **/
     public function it_should_return_the_rest_of_array()
     {
-        $this->assertEquals([2, 3, 4], f\rest([1, 2, 3, 4]));
+        $this->assertEquals([2, 3, 4, 5], f\rest($this->integerSequence));
         $this->assertEquals(['b' => 'bar', 'c' => 'baz'], f\rest(['a' => 'foo', 'b' => 'bar', 'c' => 'baz']));
     }
 
