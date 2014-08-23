@@ -18,9 +18,6 @@ f\map(f\op('inc', 3), $test);
 f\map(function($a) { return ++$a; }, $test);
 // [2, 3, 4, 5] (generator)
 
-f\map('abs', [-1, -2, -3, -4]));
-// [1, 2, 3, 4] (generator)
-
 ```
 
 ### reduce
