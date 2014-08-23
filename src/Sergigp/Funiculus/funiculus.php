@@ -23,19 +23,12 @@ namespace Sergigp\Funiculus
         $fn = $funs[$op];
 
         if (is_null($arg)) {
-            return $funs[$op];
+            return $fn;
         }
 
         return function ($a) use ($fn, $arg) {
             return $fn ($a, $arg);
         };
-    }
-
-    function map (callable $fun, $seq)
-    {
-        foreach ($seq as $el) {
-            yield $fun($el);
-        }
     }
 
     function first ($seq)
@@ -68,5 +61,12 @@ namespace Sergigp\Funiculus
         }
 
         return $r;
+    }
+
+    function map (callable $fun, $seq)
+    {
+        foreach ($seq as $el) {
+            yield $fun($el);
+        }
     }
 }
