@@ -5,8 +5,7 @@
 
 Returns a lazy sequence with functions applied.
 
-You can use some syntactic sugar functions like `f\op('inc')`, `f\op('dec')`, `f\op('square'), f\op('pow', 3)`; a closure or a native php function:
-
+You can use some syntactic sugar functions like `f\op('inc')`, `f\op('dec')`, `f\op('square'), f\op('pow', 3)` or a closure.
 ```
 $test = [1, 2, 3, 4]
 
