@@ -52,6 +52,7 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(1, f\first($this->integerSequence));
         $this->assertEquals('foo', f\first(['a' => 'foo', 'b' => 'bar']));
+        $this->assertEquals(null, f\first([]));
     }
     
     /** @test **/
@@ -59,6 +60,26 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals([2, 3, 4, 5], f\rest($this->integerSequence));
         $this->assertEquals(['b' => 'bar', 'c' => 'baz'], f\rest(['a' => 'foo', 'b' => 'bar', 'c' => 'baz']));
+    }
+    
+    /** @test **/
+    public function it_should_add_element_to_the_beginning()
+    {
+        $this->assertEquals([0, 1, 2, 3, 4, 5], f\cons(0, $this->integerSequence));
+    }
+
+    /** @test **/
+    public function it_should_identify_emtpy_array()
+    {
+        $this->assertTrue(f\is_empty([]));
+        $this->assertFalse(f\is_empty($this->integerSequence));
+    }
+
+    /** @test **/
+    public function it_should_reduce_an_array()
+    {
+        $this->assertEquals(15, f\reduce(f\op('+'), $this->integerSequence));
+        $this->assertEquals(-15, f\reduce(f\op('-'), $this->integerSequence));
     }
 
     private function compareArrayWithLazySeq(array $array, $lazySeq)
