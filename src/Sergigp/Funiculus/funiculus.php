@@ -33,4 +33,14 @@ namespace Sergigp\Funiculus
             yield $fun($el);
         }
     }
+
+    function first ($seq)
+    {
+        return array_shift($seq);
+    }
+
+    function rest ($seq)
+    {
+        return array_slice($seq, 1);
+    }
 }

@@ -46,6 +46,20 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
         f\op('non_existent_operator');
     }
 
+    /** @test **/
+    public function it_should_return_first()
+    {
+        $this->assertEquals(1, f\first([1, 2, 3]));
+        $this->assertEquals('foo', f\first(['a' => 'foo', 'b' => 'bar']));
+    }
+    
+    /** @test **/
+    public function it_should_return_the_rest_of_array()
+    {
+        $this->assertEquals([2, 3, 4], f\rest([1, 2, 3, 4]));
+        $this->assertEquals(['b' => 'bar', 'c' => 'baz'], f\rest(['a' => 'foo', 'b' => 'bar', 'c' => 'baz']));
+    }
+
     private function compareArrayWithLazySeq(array $array, $lazySeq)
     {
         $tmpArray = [];
