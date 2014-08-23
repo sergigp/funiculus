@@ -84,6 +84,14 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, f\reduce(f\op('/'), [100, 2, 5, 10]));
     }
 
+    /** @test **/
+    public function it_should_filter_an_array()
+    {
+        $this->compareArrayWithLazySeq([1,2], f\filter(f\op('pos'), [-1, 0, 1, 2]));
+        $this->compareArrayWithLazySeq([-1], f\filter(f\op('neg'), [-1, 0, 1, 2]));
+        $this->compareArrayWithLazySeq([], f\filter(f\op('neg'), [0, 1, 2]));
+    }
+
     private function compareArrayWithLazySeq(array $array, $lazySeq)
     {
         $tmpArray = [];

@@ -14,6 +14,8 @@ namespace Sergigp\Funiculus
             '-'         => function($x, $y) { return $x - $y; },
             '*'         => function($x, $y) { return $x * $y; },
             '/'         => function($x, $y) { return $x / $y; },
+            'pos'       => function($x) { return $x > 0; },
+            'neg'       => function($x) { return $x < 0; },
         ];
 
         if (!array_key_exists($op, $fns)) {
@@ -67,6 +69,13 @@ namespace Sergigp\Funiculus
     {
         foreach ($sq as $e) {
             yield $fn($e);
+        }
+    }
+
+    function filter (callable $fn, $sq)
+    {
+        foreach ($sq as $e) {
+            if ($fn($e)) yield $e;
         }
     }
 }
