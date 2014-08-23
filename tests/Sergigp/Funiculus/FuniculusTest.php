@@ -34,8 +34,8 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
         $this->compareArrayWithLazySeq([0, 1, 2, 3, 4], f\map(f\op('dec'), $this->integerSequence));
         $this->compareArrayWithLazySeq([1, 4, 9, 16, 25], f\map(f\op('square'), $this->integerSequence));
 
-        $this->compareArrayWithLazySeq([3, 4, 5, 6, 7], f\map(f\op('inc', 2), $this->integerSequence));
-        $this->compareArrayWithLazySeq([-2, -1, 0, 1, 2], f\map(f\op('dec', 3), $this->integerSequence));
+        $this->compareArrayWithLazySeq([3, 4, 5, 6, 7], f\map(f\op('+', 2), $this->integerSequence));
+        $this->compareArrayWithLazySeq([-2, -1, 0, 1, 2], f\map(f\op('-', 3), $this->integerSequence));
         $this->compareArrayWithLazySeq([1, 8, 27, 64, 125], f\map(f\op('pow', 3), $this->integerSequence));
 
     }

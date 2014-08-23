@@ -5,22 +5,22 @@ namespace Sergigp\Funiculus
 {
     function op ($op, $arg = null)
     {
-        $funs = [
-            'inc'       => function($x, $arg = 1) { return $x + $arg; },
-            'dec'       => function($x, $arg = 1) { return $x - $arg; },
+        $fns = [
+            'inc'       => function($x) { return ++$x; },
+            'dec'       => function($x) { return --$x; },
             'square'    => function($x) { return $x * $x; },
-            'pow'       => function($x, $arg) { return pow($x, $arg); },
+            'pow'       => function($x, $y) { return pow($x, $y); },
             '+'         => function($x, $y) { return $x + $y; },
             '-'         => function($x, $y) { return $x - $y; },
             '*'         => function($x, $y) { return $x * $y; },
             '/'         => function($x, $y) { return $x / $y; },
         ];
 
-        if (!array_key_exists($op, $funs)) {
+        if (!array_key_exists($op, $fns)) {
             throw new \InvalidArgumentException(sprintf('Unknown operator: %s', $op));
         }
 
-        $fn = $funs[$op];
+        $fn = $fns[$op];
 
         if (is_null($arg)) {
             return $fn;
@@ -31,42 +31,42 @@ namespace Sergigp\Funiculus
         };
     }
 
-    function first ($seq)
+    function first ($sq)
     {
-        return array_shift($seq);
+        return array_shift($sq);
     }
 
-    function rest ($seq)
+    function rest ($sq)
     {
-        return array_slice($seq, 1);
+        return array_slice($sq, 1);
     }
 
-    function cons ($el, $seq)
+    function cons ($e, $sq)
     {
-        array_unshift($seq, $el);
-        return $seq;
+        array_unshift($sq, $e);
+        return $sq;
     }
 
-    function is_empty ($seq)
+    function is_empty ($sq)
     {
-        return empty($seq);
+        return empty($sq);
     }
 
-    function reduce (callable $fun, $seq)
+    function reduce (callable $fn, $sq)
     {
-        $r = first($seq);
+        $r = first($sq);
 
-        for ($i = 0; $i < (count($seq) - 1); $i++) {
-            $r = $fun($r, $seq[$i + 1]);
+        for ($i = 0; $i < (count($sq) - 1); $i++) {
+            $r = $fn($r, $sq[$i + 1]);
         }
 
         return $r;
     }
 
-    function map (callable $fun, $seq)
+    function map (callable $fn, $sq)
     {
-        foreach ($seq as $el) {
-            yield $fun($el);
+        foreach ($sq as $e) {
+            yield $fn($e);
         }
     }
 }
