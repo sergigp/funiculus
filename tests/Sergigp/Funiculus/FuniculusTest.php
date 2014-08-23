@@ -79,7 +79,9 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
     public function it_should_reduce_an_array()
     {
         $this->assertEquals(15, f\reduce(f\op('+'), $this->integerSequence));
-        $this->assertEquals(-15, f\reduce(f\op('-'), $this->integerSequence));
+        $this->assertEquals(-13, f\reduce(f\op('-'), $this->integerSequence));
+        $this->assertEquals(120, f\reduce(f\op('*'), $this->integerSequence));
+        $this->assertEquals(1, f\reduce(f\op('/'), [100, 2, 5, 10]));
     }
 
     private function compareArrayWithLazySeq(array $array, $lazySeq)

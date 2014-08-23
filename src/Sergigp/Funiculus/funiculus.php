@@ -13,6 +13,7 @@ namespace Sergigp\Funiculus
             '+'         => function($x, $y) { return $x + $y; },
             '-'         => function($x, $y) { return $x - $y; },
             '*'         => function($x, $y) { return $x * $y; },
+            '/'         => function($x, $y) { return $x / $y; },
         ];
 
         if (!array_key_exists($op, $funs)) {
@@ -58,16 +59,14 @@ namespace Sergigp\Funiculus
         return empty($seq);
     }
 
-    function reduce (callable $fun, $seq, $base = null)
+    function reduce (callable $fun, $seq)
     {
-        if (is_empty($seq)) {
-            return null;
-        } else {
-            return reduce(
-                $fun,
-                rest($seq),
-                $fun($base, first($seq))
-            );
+        $r = first($seq);
+
+        for ($i = 0; $i < (count($seq) - 1); $i++) {
+            $r = $fun($r, $seq[$i + 1]);
         }
+
+        return $r;
     }
 }
