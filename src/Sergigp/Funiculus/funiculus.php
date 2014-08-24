@@ -35,11 +35,15 @@ namespace Sergigp\Funiculus
 
     function first ($sq)
     {
-        return array_shift($sq);
+        return is_array($sq) ? current($sq) : $sq->current();
     }
 
     function rest ($sq)
     {
+        if (!is_array($sq)) {
+            $sq = iterator_to_array($sq);
+        }
+
         return array_slice($sq, 1);
     }
 
@@ -51,7 +55,7 @@ namespace Sergigp\Funiculus
 
     function is_empty ($sq)
     {
-        return empty($sq);
+        return is_array($sq) ? count($sq) === 0 : iterator_count($sq) === 0;
     }
 
     function reduce (callable $fn, $sq)

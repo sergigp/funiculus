@@ -4,8 +4,8 @@ namespace Sergigp\Funiculus\Tests\Stub;
 
 class SimpleIterableObject implements \Iterator
 {
-    private $position = 0;
-    private $array = [];
+    public $position = 0;
+    public $array = [];
 
     public function __construct(array $myArray)
     {
