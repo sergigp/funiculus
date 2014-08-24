@@ -77,3 +77,25 @@ Returns true if an array is empty.
 f\is_empty([]));
 // true
 ```
+
+### every
+
+Returns true if every of a sequence accomplishes a condition.
+
+```
+f\every(f\op('pos'), [1, 2, 3, 4]);
+// true
+f\every(f\op('pos'), [-1, 2, 3, 4]);
+// false
+```
+
+### some 
+
+Returns true if some element of a sequence accomplishes a condition.
+
+```
+f\some(f\op('neg'), [1, 2, 3, -4]);
+// true
+f\some(f\op('pos'), [-1, -2, -3, -4]);
+// false
+```

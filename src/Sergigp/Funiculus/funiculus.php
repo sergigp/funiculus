@@ -78,4 +78,22 @@ namespace Sergigp\Funiculus
             if ($fn($e)) yield $e;
         }
     }
+
+    function every (callable $fn, $sq)
+    {
+        foreach ($sq as $e) {
+            if (!$fn($e)) return false;
+        }
+
+        return true;
+    }
+
+    function some (callable $fn, $sq)
+    {
+        foreach ($sq as $e) {
+            if ($fn($e)) return true;
+        }
+
+        return false;
+    }
 }
