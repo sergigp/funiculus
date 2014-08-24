@@ -1,10 +1,19 @@
 <?php
 
-use Sergigp\Funiculus as f;
+namespace Sergigp\Funiculus\Tests;
 
-class FuniculusTest extends PHPUnit_Framework_TestCase
+use Sergigp\Funiculus as f;
+use Sergigp\Funiculus\Tests\Stub\SimpleIterableObject;
+
+class FuniculusTest extends \PHPUnit_Framework_TestCase
 {
     private $integerSequence = [1, 2, 3, 4, 5];
+    private $iterableObject;
+
+    public function setUp()
+    {
+        $this->iterableObject = new SimpleIterableObject(range(0,100));
+    }
 
     /** @test **/
     public function it_map_closure_functions_to_array()
@@ -43,7 +52,7 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function it_should_throw_an_exception_with_invalid_operator()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->setExpectedException('\InvalidArgumentException');
         f\op('non_existent_operator');
     }
 
