@@ -99,3 +99,12 @@ f\some(f\op('neg'), [1, 2, 3, -4]);
 f\some(f\op('pos'), [-1, -2, -3, -4]);
 // false
 ```
+
+### take 
+
+Returns a lazy sequence with the N first elements of a sequence.
+
+```
+f\take(2, [1, 2, 3, 4]);
+// [1, 2] (generator)
+```

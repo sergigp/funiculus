@@ -96,4 +96,15 @@ namespace Sergigp\Funiculus
 
         return false;
     }
+
+    function take ($n, $sq)
+    {
+        $i = 1;
+
+        foreach ($sq as $e) {
+            if ($i > $n) break;
+            $i++;
+            yield $e;
+        }
+    }
 }

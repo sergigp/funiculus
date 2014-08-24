@@ -87,7 +87,7 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function it_should_filter_an_array()
     {
-        $this->compareArrayWithLazySeq([1,2], f\filter(f\op('pos'), [-1, 0, 1, 2]));
+        $this->compareArrayWithLazySeq([1, 2], f\filter(f\op('pos'), [-1, 0, 1, 2]));
         $this->compareArrayWithLazySeq([-1], f\filter(f\op('neg'), [-1, 0, 1, 2]));
         $this->compareArrayWithLazySeq([], f\filter(f\op('neg'), [0, 1, 2]));
     }
@@ -104,6 +104,13 @@ class FuniculusTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue(f\some(f\op('pos'), $this->integerSequence));
         $this->assertFalse(f\some(f\op('pos'), [-1, -2, -3]));
+    }
+    
+    /** @test **/
+    public function it_should_take_n_elements_of_a_sequence()
+    {
+        $this->compareArrayWithLazySeq([1, 2], f\take(2, $this->integerSequence));
+        $this->compareArrayWithLazySeq([1], f\take(1, f\filter(f\op('pos'), [-1, 0, 1, 2])));
     }
 
     private function compareArrayWithLazySeq(array $array, $lazySeq)
