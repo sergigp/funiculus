@@ -124,7 +124,8 @@ Returns a lazy sequence with the N first elements of a sequence.
 
 ```
 f\take(2, [1, 2, 3, 4]);
-// [1, 2] (generator)```
+// [1, 2] (generator)
+```
 
 ### get_count
 
