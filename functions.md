@@ -1,6 +1,16 @@
 #Functions
 
 * [map](#map)
+* [reduce](#reduce)
+* [filter](#filter)
+* [first](#first)
+* [rest](#rest)
+* [cons](#cons)
+* [is_empty](#is_empty)
+* [every](#every)
+* [some](#some)
+* [take](#take)
+* [repeat](#repeat)
 
 ###map
 
@@ -8,7 +18,7 @@ Returns a lazy sequence with functions applied.
 
 You can use some syntactic sugar functions like `f\op('inc')`, `f\op('dec')`, `f\op('square'), f\op('pow', 3)`; php native function literals or a closure.
 ```
-$test = [1, 2, 3, 4]
+$test = [1, 2, 3, 4];
 
 f\map(f\op('inc'), $test);
 // [2, 3, 4, 5] (generator)
@@ -29,11 +39,14 @@ f\map('abs', [-1, -2, -3, -4]);
 Reduce an array giving a closure
 
 ```
-f\reduce(f\op('+'), [1, 2, 3, 4]));
+
+$test = [1, 2, 3, 4];
+
+f\reduce(f\op('+'), $test));
 // 1 + 2 + 3 + 4 = 10
 
-f\reduce(f\op('-'), [1, 2, 3, 4, 5]);
-// 1 - 2 - 3 - 4 - 5 = -13
+f\reduce(f\op('-'), $test);
+// 1 - 2 - 3 - 4 = -8
 ```
 
 ### filter
