@@ -159,6 +159,15 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(101, f\get_count($this->iterableObject));
     }
 
+    /** @test **/
+    public function it_should_repeat()
+    {
+        $this->compareArrayWithLazySeq(['na', 'na', 'na'], f\take(3, f\repeat('na')));
+        $this->compareArrayWithLazySeq([1, 1, 1, 1], f\take(4, f\repeat(1)));
+
+        $this->compareArrayWithLazySeq([1, 1, 1, 1], f\take(4, f\repeat(function () { return 1; })));
+    }
+
     private function compareArrayWithLazySeq(array $array, $lazySeq)
     {
         $tmpArray = [];

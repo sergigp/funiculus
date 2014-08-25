@@ -118,4 +118,15 @@ Returns the count of an iterable
 ```
 f\get_count([1, 2, 3, 4]);
 // 4
-``
+```
+
+### repeat
+
+Generate a lazy infinite sequence. You probably should use it with ```take```
+```
+f\take(4, f\repeat(1));
+// [1, 1, 1, 1] (generator)
+f\take(4, f\repeat(function () { return rand(1,10); }))
+// [6, 9, 1, 5] (generator)
+```
+

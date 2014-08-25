@@ -121,4 +121,15 @@ namespace Sergigp\Funiculus
             yield $e;
         }
     }
+
+    function repeat ($e)
+    {
+        while (true) {
+            if (is_callable($e)) {
+                yield $e();
+            } else {
+                yield $e;
+            }
+        }
+    }
 }
