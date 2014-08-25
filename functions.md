@@ -11,6 +11,7 @@
 * [some](#some)
 * [take](#take)
 * [repeat](#repeat)
+* [progression](#progression)
 
 ###map
 
@@ -123,8 +124,7 @@ Returns a lazy sequence with the N first elements of a sequence.
 
 ```
 f\take(2, [1, 2, 3, 4]);
-// [1, 2] (generator)
-```
+// [1, 2] (generator)```
 
 ### get_count
 
@@ -144,3 +144,11 @@ f\take(4, f\repeat(function () { return rand(1,10); }))
 // [6, 9, 1, 5] (generator)
 ```
 
+### progression
+
+Generate a lazy infinite progression. The index of the sequence is the seed for its value.
+```
+f\take(4, f\progression(function ($i) { return $i * 2; }));
+// [0, 2, 4, 6] // generator
+f\take(5, f\progression(f\op('square'));
+// [0, 1, 4, 9, 27] // generator

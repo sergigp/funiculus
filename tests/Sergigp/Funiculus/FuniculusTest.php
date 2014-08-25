@@ -168,6 +168,13 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->compareArrayWithLazySeq([1, 1, 1, 1], f\take(4, f\repeat(function () { return 1; })));
     }
 
+    /** @test **/
+    public function it_should_generate_progression()
+    {
+        $this->compareArrayWithLazySeq([0, 2, 4, 6], f\take(4, f\progression(function ($i) { return $i * 2; })));
+        $this->compareArrayWithLazySeq([0, 1, 4, 9, 16, 25, 36, 49], f\take(8, f\progression(f\op('square'))));
+    }
+
     private function compareArrayWithLazySeq(array $array, $lazySeq)
     {
         $tmpArray = [];

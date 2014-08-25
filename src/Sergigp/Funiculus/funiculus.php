@@ -132,4 +132,13 @@ namespace Sergigp\Funiculus
             }
         }
     }
+
+    function progression (callable $fn)
+    {
+        $i = -1;
+        while (true) {
+            $i++;
+            yield $fn($i);
+        }
+    }
 }
