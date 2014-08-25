@@ -103,6 +103,7 @@ Returns true if every of a sequence accomplishes a condition.
 ```
 f\every(f\op('pos'), [1, 2, 3, 4]);
 // true
+
 f\every(f\op('pos'), [-1, 2, 3, 4]);
 // false
 ```
@@ -114,6 +115,7 @@ Returns true if some element of a sequence accomplishes a condition.
 ```
 f\some(f\op('neg'), [1, 2, 3, -4]);
 // true
+
 f\some(f\op('pos'), [-1, -2, -3, -4]);
 // false
 ```
@@ -141,6 +143,7 @@ Generate a lazy infinite sequence. You probably should use it with ```take```
 ```
 f\take(4, f\repeat(1));
 // [1, 1, 1, 1] (generator)
+
 f\take(4, f\repeat(function () { return rand(1,10); }))
 // [6, 9, 1, 5] (generator)
 ```
@@ -151,6 +154,7 @@ Generate a lazy infinite progression. The index of the sequence is the seed for 
 ```
 f\take(4, f\progression(function ($i) { return $i * 2; }));
 // [0, 2, 4, 6] // generator
+
 f\take(5, f\progression(f\op('square'));
 // [0, 1, 4, 9, 27] // generator
 ```
