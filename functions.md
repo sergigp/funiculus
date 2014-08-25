@@ -111,3 +111,11 @@ Returns a lazy sequence with the N first elements of a sequence.
 f\take(2, [1, 2, 3, 4]);
 // [1, 2] (generator)
 ```
+
+### get_count
+
+Returns the count of an iterable
+```
+f\get_count([1, 2, 3, 4]);
+// 4
+``

@@ -16,6 +16,8 @@ namespace Sergigp\Funiculus
             '/'         => function($x, $y) { return $x / $y; },
             'pos'       => function($x) { return $x > 0; },
             'neg'       => function($x) { return $x < 0; },
+            'odd'       => function($x) { return $x % 2 !== 0; },
+            'even'      => function($x) { return $x % 2 === 0; },
         ];
 
         if (!array_key_exists($op, $fns)) {
@@ -47,19 +49,22 @@ namespace Sergigp\Funiculus
         return array_slice($sq, 1);
     }
 
-    function cons ($e, $sq)
+    function cons ($e, array $sq)
     {
+        // @TODO support for iterators...
         array_unshift($sq, $e);
         return $sq;
     }
 
     function is_empty ($sq)
     {
-        return is_array($sq) ? count($sq) === 0 : iterator_count($sq) === 0;
+        return get_count($sq) === 0;
     }
 
     function reduce (callable $fn, $sq)
     {
+        $sq = is_array($sq) ? $sq : iterator_to_array($sq);
+
         $r = first($sq);
 
         for ($i = 0; $i < (count($sq) - 1); $i++) {
@@ -67,6 +72,11 @@ namespace Sergigp\Funiculus
         }
 
         return $r;
+    }
+
+    function get_count($sq)
+    {
+        return is_array($sq) ? count($sq) : iterator_count($sq);
     }
 
     function map (callable $fn, $sq)
