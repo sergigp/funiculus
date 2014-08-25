@@ -51,7 +51,7 @@ namespace Sergigp\Funiculus
 
     function cons ($e, array $sq)
     {
-        // @TODO support for iterators...
+        // @TODO support for iterators and generators?
         array_unshift($sq, $e);
         return $sq;
     }

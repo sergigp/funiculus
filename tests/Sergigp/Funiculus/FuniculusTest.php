@@ -9,10 +9,12 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
 {
     private $integerSequence = [1, 2, 3, 4, 5];
     private $iterableObject;
+    private $generatorObject;
 
     public function setUp()
     {
-        $this->iterableObject = new SimpleIterableObject(range(0,100));
+        $this->iterableObject       = new SimpleIterableObject(range(0,100));
+        $this->generatorObject      = f\take(4, f\progression(f\op('square')));
     }
 
     /** @test **/
@@ -29,6 +31,11 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
             range(1, 101),
             f\map($mapFunction, $this->iterableObject)
         );
+
+        $this->compareArrayWithLazySeq(
+            [1, 2, 5, 10],
+            f\map($mapFunction, $this->generatorObject)
+        );
     }
 
     /** @test **/
@@ -41,6 +48,8 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->compareArrayWithLazySeq([1, 2, 3, 4], f\map('sqrt', [1, 4, 9, 16]));
 
         $this->compareArrayWithLazySeq(range(100, 0), f\map('abs', new SimpleIterableObject(range(-100,0))));
+
+        $this->compareArrayWithLazySeq([0, 1, 2, 3], f\map('abs', f\take(4, f\progression(function ($i) { return -$i;}))));
     }
 
     /** @test **/
@@ -55,6 +64,8 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
 
         $this->compareArrayWithLazySeq(range(-1, 99), f\map(f\op('dec'), $this->iterableObject));
         $this->compareArrayWithLazySeq(range(-3, 97), f\map(f\op('-', 3), $this->iterableObject));
+
+        $this->compareArrayWithLazySeq([-1, 0, 3, 8], f\map(f\op('-', 1), $this->generatorObject));
     }
 
     /** @test **/
@@ -72,7 +83,10 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(null, f\first([]));
 
         $this->assertEquals(0, f\first($this->iterableObject));
+        $this->assertEquals(4, f\first(new SimpleIterableObject([4, 5, 6])));
+
         $this->assertEquals(1, f\first(f\map(f\op('+', 1), $this->iterableObject)));
+        $this->assertEquals(0, f\first($this->generatorObject));
     }
 
     /** @test **/
@@ -98,6 +112,9 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(f\is_empty($this->integerSequence));
 
         $this->assertTrue(f\is_empty(new SimpleIterableObject([])));
+
+        $this->assertFalse(f\is_empty($this->generatorObject));
+        $this->assertTrue(f\is_empty(f\take(0, f\repeat('na'))));
     }
 
     /** @test **/
@@ -109,6 +126,8 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, f\reduce(f\op('/'), [100, 2, 5, 10]));
 
         $this->assertEquals(15, f\reduce(f\op('+'), new SimpleIterableObject($this->integerSequence)));
+
+        $this->assertEquals(14, f\reduce(f\op('+'), $this->generatorObject));
     }
 
     /** @test **/
@@ -119,6 +138,8 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->compareArrayWithLazySeq([], f\filter(f\op('neg'), [0, 1, 2]));
 
         $this->compareArrayWithLazySeq([1], f\filter(f\op('odd'), new SimpleIterableObject([0, 1, 2])));
+
+        $this->compareArrayWithLazySeq([0, 4], f\filter(f\op('even'), $this->generatorObject));
     }
 
     /** @test **/
@@ -129,6 +150,9 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(f\every(f\op('pos'), new SimpleIterableObject($this->integerSequence)));
         $this->assertFalse(f\every(f\op('neg'), new SimpleIterableObject($this->integerSequence)));
+
+        $this->assertFalse(f\every(f\op('neg'), $this->generatorObject));
+        $this->assertTrue(f\every(f\op('pos'), f\take(5, f\repeat(1))));
     }
 
     /** @test **/
@@ -139,6 +163,9 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(f\some(f\op('pos'), $this->iterableObject));
         $this->assertFalse(f\some(f\op('pos'), new SimpleIterableObject([-1, -2, -3])));
+
+        $this->assertTrue(f\some(f\op('pos'), $this->generatorObject));
+        $this->assertFalse(f\some(f\op('neg'), f\take(5, f\repeat(1))));
     }
 
     /** @test **/
@@ -149,6 +176,8 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
 
         $this->compareArrayWithLazySeq([0, 1], f\take(2, $this->iterableObject));
         $this->compareArrayWithLazySeq([1], f\take(1, f\filter(f\op('pos'), new SimpleIterableObject([-1, 0, 1, 2]))));
+
+        $this->compareArrayWithLazySeq([0, 1, 4], f\take(3, $this->generatorObject));
     }
 
     /** @test **/
@@ -157,6 +186,8 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, f\get_count($this->integerSequence));
 
         $this->assertEquals(101, f\get_count($this->iterableObject));
+
+        $this->assertEquals(4, f\get_count($this->generatorObject));
     }
 
     /** @test **/

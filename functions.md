@@ -80,10 +80,10 @@ f\rest([1, 2, 3, 4]));
 
 ### cons
 
-Insert an element at the beginning of an array. It delegates in ```array_unshift```
+Insert an element at the beginning of an array. This function only works with ```array```.
 
 ```
-f\first(1, [2, 3, 4]));
+f\cons(1, [2, 3, 4]));
 // 1
 ```
 
