@@ -1,5 +1,6 @@
 #Functions
 
+* [map](#map)
 
 ###map
 
