@@ -158,5 +158,3 @@ f\take(4, f\progression(function ($i) { return $i * 2; }));
 f\take(5, f\progression(f\op('square'));
 // [0, 1, 4, 9, 27] // generator
 ```
-
-
