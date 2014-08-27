@@ -205,6 +205,17 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->compareArrayWithLazySeq([0, 2, 4, 6], f\take(4, f\progression(function ($i) { return $i * 2; })));
         $this->compareArrayWithLazySeq([0, 1, 4, 9, 16, 25, 36, 49], f\take(8, f\progression(f\op('square'))));
     }
+    
+    /** @test */
+    public function it_should_take_while_conditions_is_true()
+    {
+        $this->compareArrayWithLazySeq([1, 2, 3, 4], f\take_while(function ($i) { return $i < 5; }, $this->integerSequence));
+        $this->compareArrayWithLazySeq([-3, -2, -1], f\take_while(f\op('neg'), [-3, -2, -1, 0, 1, 2]));
+
+        $this->compareArrayWithLazySeq([0, 1, 2, 3, 4], f\take_while(function ($i) { return $i < 5; }, $this->iterableObject));
+
+        $this->compareArrayWithLazySeq([0, 1, 4], f\take_while(function ($i) { return $i < 5; }, $this->generatorObject));
+    }
 
     private function compareArrayWithLazySeq(array $array, $lazySeq)
     {

@@ -12,6 +12,7 @@
 * [take](#take)
 * [repeat](#repeat)
 * [progression](#progression)
+* [take_while](#take_while)
 
 ###map
 
@@ -157,4 +158,12 @@ f\take(4, f\progression(function ($i) { return $i * 2; }));
 
 f\take(5, f\progression(f\op('square'));
 // [0, 1, 4, 9, 27] // generator
+```
+
+### take_while
+
+Generate lazy sequence with elements until condition is false
+```
+f\take_while('neg', [-3, -2, -1, 0, 1, 2])
+// [-3, -2, -1]  (generator)
 ```

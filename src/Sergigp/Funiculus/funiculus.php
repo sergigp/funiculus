@@ -141,4 +141,16 @@ namespace Sergigp\Funiculus
             yield $fn($i);
         }
     }
+
+    function take_while (callable $fn, $sq)
+    {
+        foreach ($sq as $e) {
+            if ($fn($e)) {
+                yield $e;
+            } else {
+                return;
+            }
+        }
+
+    }
 }
