@@ -217,6 +217,17 @@ class FuniculusTest extends \PHPUnit_Framework_TestCase
         $this->compareArrayWithLazySeq([0, 1, 4], f\take_while(function ($i) { return $i < 5; }, $this->generatorObject));
     }
 
+    /** @test */
+    public function it_should_drop_while_condition_is_true()
+    {
+        $this->compareArrayWithLazySeq([5], f\drop_while(function ($i) { return $i < 5; }, $this->integerSequence));
+        $this->compareArrayWithLazySeq([0, 1, 2], f\drop_while(f\op('neg'), [-3, -2, -1, 0, 1, 2]));
+
+        $this->compareArrayWithLazySeq(range(5, 100), f\drop_while(function ($i) { return $i < 5; }, $this->iterableObject));
+
+        $this->compareArrayWithLazySeq([9], f\drop_while(function ($i) { return $i < 5; }, $this->generatorObject));
+    }
+
     private function compareArrayWithLazySeq(array $array, $lazySeq)
     {
         $tmpArray = [];
