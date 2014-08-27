@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sergigp/funiculus.svg?branch=master)](https://travis-ci.org/sergigp/funiculus)
 
-Funiculus is a port of some Clojure functions an ideas to PHP. It works with PHP iterables (arrays, object that implements Iterator interface, and generators)
+Funiculus is a port of some Clojure functions and ideas to PHP. It works with PHP iterables (arrays, objects that implements Iterator interface, and generators)
  
 This project is strongly inspired by [pablodip/felpado](https://github.com/pablodip/felpado) and [nikic/iter](https://github.com/nikic/iter]).
 
