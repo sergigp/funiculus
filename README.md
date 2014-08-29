@@ -13,7 +13,6 @@ Funiculus is forged with some principles in mind:
 * Immutabilty.
 * Simplicity over easiness.
 
- 
 This project is strongly inspired by [pablodip/felpado](https://github.com/pablodip/felpado) and [nikic/iter](https://github.com/nikic/iter]).
 
 ##Use
@@ -33,3 +32,11 @@ use Sergigp\Funiculus as f;
 ##Functions
 
 You can see [available functions](https://github.com/sergigp/funiculus/blob/master/functions.md)
+
+##Author
+
+Sergi GP - <sergigp85@gmail.com>
+
+##License
+
+Funiculus is licensed under the [MIT License](https://github.com/sergigp/funiculus/blob/master/LICENCE).
