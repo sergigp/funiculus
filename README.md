@@ -39,4 +39,4 @@ Sergi GP - <sergigp85@gmail.com>
 
 ##License
 
-Funiculus is licensed under the [MIT License](https://github.com/sergigp/funiculus/blob/master/LICENCE).
+Funiculus is licensed under the [MIT License](https://github.com/sergigp/funiculus/blob/master/LICENSE).
