@@ -2,7 +2,17 @@
 
 [![Build Status](https://travis-ci.org/sergigp/funiculus.svg?branch=master)](https://travis-ci.org/sergigp/funiculus)
 
-Funiculus is a port of some Clojure functions and ideas to PHP. It works with PHP iterables (arrays, objects that implements Iterator interface, and generators)
+Funiculus is a port of some Clojure functions and ideas to PHP for manage collections.
+
+Funiculus is forged with some principles in mind:
+
+* A collection can be any iterable PHP object, arrays or generators.
+* Play with generators when it's possible.
+* Work with closures (some syntactic sugar for operator available sacrificing some performance).
+* Composition.
+* Immutabilty.
+* Simplicity over easiness.
+
  
 This project is strongly inspired by [pablodip/felpado](https://github.com/pablodip/felpado) and [nikic/iter](https://github.com/nikic/iter]).
 
@@ -14,13 +24,11 @@ Install through composer:
 composer require sergigp/funiculus:dev-master
 ```
 
-Add the namespace
+Use and enjoy!
 
 ```
 use Sergigp\Funiculus as f;
 ```
-
-Enjoy!
 
 ##Functions
 
