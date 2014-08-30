@@ -20,7 +20,7 @@ This project is strongly inspired by [pablodip/felpado](https://github.com/pablo
 Install through composer:
 
 ```
-composer require sergigp/funiculus:dev-master
+composer require sergigp/funiculus:~0.1
 ```
 
 Use and enjoy!
