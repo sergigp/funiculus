@@ -13,7 +13,7 @@ Funiculus is forged with some principles in mind:
 * Immutabilty.
 * Simplicity over easiness.
 
-This project is strongly inspired by [pablodip/felpado](https://github.com/pablodip/felpado) and [nikic/iter](https://github.com/nikic/iter]).
+This project is strongly inspired by [pablodip/felpado](https://github.com/pablodip/felpado) and [nikic/iter](https://github.com/nikic/iter).
 
 ##Use
 
