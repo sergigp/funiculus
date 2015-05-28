@@ -74,7 +74,7 @@ namespace Sergigp\Funiculus
         return $r;
     }
 
-    function get_count($sq)
+    function get_count ($sq)
     {
         return is_array($sq) ? count($sq) : iterator_count($sq);
     }
