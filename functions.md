@@ -18,7 +18,7 @@
 
 Returns a lazy sequence with functions applied.
 
-You can use some syntactic sugar functions like `f\op('inc')`, `f\op('dec')`, `f\op('square'), f\op('pow', 3)`; php native function literals or a closure.
+You can use some syntactic sugar functions like `f\op('inc')`, `f\op('dec')`, `f\op('square'), f\op('pow', 3)`; PHP native function literals or a closure.
 ```
 $test = [1, 2, 3, 4];
 
@@ -38,7 +38,7 @@ f\map('abs', [-1, -2, -3, -4]);
 
 ### reduce
 
-Reduce an array giving a closure
+Reduces an array giving a closure
 
 ```
 
@@ -63,7 +63,7 @@ f\filter(f\op('pos'), [-2, -1, 0, 1, 2]);
 
 ### first
 
-Returns the first element of array. It delegates in ```array_shift```
+Returns the first element of array. It delegates in `array_shift`
 
 ```
 f\first([1, 2, 3, 4]));
@@ -81,7 +81,7 @@ f\rest([1, 2, 3, 4]));
 
 ### cons
 
-Insert an element at the beginning of an array. This function only works with ```array```.
+Inserts an element at the beginning of an array. This function only works with `array`.
 
 ```
 f\cons(1, [2, 3, 4]));
@@ -99,7 +99,7 @@ f\is_empty([]));
 
 ### every
 
-Returns true if every of a sequence accomplishes a condition.
+Returns true if every element of a sequence accomplishes a condition.
 
 ```
 f\every(f\op('pos'), [1, 2, 3, 4]);
@@ -140,7 +140,7 @@ f\get_count([1, 2, 3, 4]);
 
 ### repeat
 
-Generate a lazy infinite sequence. You probably should use it with ```take```
+Generates a lazy infinite sequence. You probably should use it with `take`
 ```
 f\take(4, f\repeat(1));
 // [1, 1, 1, 1] (generator)
@@ -151,7 +151,7 @@ f\take(4, f\repeat(function () { return rand(1,10); }))
 
 ### progression
 
-Generate a lazy infinite progression. The index of the sequence is the seed for its value.
+Generates a lazy infinite progression. The index of the sequence is the seed for its value.
 ```
 f\take(4, f\progression(function ($i) { return $i * 2; }));
 // [0, 2, 4, 6] // generator
@@ -162,7 +162,7 @@ f\take(5, f\progression(f\op('square'));
 
 ### take_while
 
-Generate lazy sequence with elements until condition is false
+Generates a lazy sequence with elements until condition is false
 ```
 f\take_while(f\op('neg'), [-3, -2, -1, 0, 1, 2])
 // [-3, -2, -1]  (generator)
@@ -170,7 +170,7 @@ f\take_while(f\op('neg'), [-3, -2, -1, 0, 1, 2])
 
 ### drop_while
 
-Generate lazy sequence without dropped elements until condition is false
+Generates a lazy sequence without dropped elements until condition is false
 ```
 f\drop_while(f\op('neg'), [-3, -2, -1, 0, 1, 2])
 // [0, 1, 2]  (generator)
