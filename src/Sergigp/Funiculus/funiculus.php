@@ -1,9 +1,8 @@
 <?php
 
 
-namespace Sergigp\Funiculus
-{
-    function op ($op, $arg = null)
+namespace Sergigp\Funiculus {
+    function op($op, $arg = null)
     {
         $fns = [
             'inc'       => function($x) { return ++$x; },
@@ -35,12 +34,12 @@ namespace Sergigp\Funiculus
         };
     }
 
-    function first ($sq)
+    function first($sq)
     {
         return is_array($sq) ? current($sq) : $sq->current();
     }
 
-    function rest ($sq)
+    function rest($sq)
     {
         if (!is_array($sq)) {
             $sq = iterator_to_array($sq);
@@ -49,19 +48,19 @@ namespace Sergigp\Funiculus
         return array_slice($sq, 1);
     }
 
-    function cons ($e, array $sq)
+    function cons($e, array $sq)
     {
         // @TODO support for iterators and generators?
         array_unshift($sq, $e);
         return $sq;
     }
 
-    function is_empty ($sq)
+    function is_empty($sq)
     {
         return get_count($sq) === 0;
     }
 
-    function reduce (callable $fn, $sq)
+    function reduce(callable $fn, $sq)
     {
         $sq = is_array($sq) ? $sq : iterator_to_array($sq);
 
@@ -79,50 +78,56 @@ namespace Sergigp\Funiculus
         return is_array($sq) ? count($sq) : iterator_count($sq);
     }
 
-    function map (callable $fn, $sq)
+    function map(callable $fn, $sq)
     {
         foreach ($sq as $e) {
             yield $fn($e);
         }
     }
 
-    function filter (callable $fn, $sq)
+    function filter(callable $fn, $sq)
     {
         foreach ($sq as $e) {
             if ($fn($e)) yield $e;
         }
     }
 
-    function every (callable $fn, $sq)
+    function every(callable $fn, $sq)
     {
         foreach ($sq as $e) {
-            if (!$fn($e)) return false;
+            if (!$fn($e)) {
+                return false;
+            }
         }
 
         return true;
     }
 
-    function some (callable $fn, $sq)
+    function some(callable $fn, $sq)
     {
         foreach ($sq as $e) {
-            if ($fn($e)) return true;
+            if ($fn($e)) {
+                return true;
+            }
         }
 
         return false;
     }
 
-    function take ($n, $sq)
+    function take($n, $sq)
     {
         $i = 1;
 
         foreach ($sq as $e) {
-            if ($i > $n) break;
+            if ($i > $n) {
+                break;
+            }
             $i++;
             yield $e;
         }
     }
 
-    function repeat ($e)
+    function repeat($e)
     {
         while (true) {
             if (is_callable($e)) {
@@ -133,7 +138,7 @@ namespace Sergigp\Funiculus
         }
     }
 
-    function progression (callable $fn)
+    function progression(callable $fn)
     {
         $i = -1;
         while (true) {
@@ -142,7 +147,7 @@ namespace Sergigp\Funiculus
         }
     }
 
-    function take_while (callable $fn, $sq)
+    function take_while(callable $fn, $sq)
     {
         foreach ($sq as $e) {
             if ($fn($e)) {
@@ -153,7 +158,7 @@ namespace Sergigp\Funiculus
         }
     }
 
-    function drop_while (callable $fn, $sq)
+    function drop_while(callable $fn, $sq)
     {
         foreach ($sq as $e) {
             if (!$fn($e)) {
